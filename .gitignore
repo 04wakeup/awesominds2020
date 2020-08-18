@@ -1,0 +1,15 @@
+#ignore file of variables just for dev mode
+devvars.js
+#ignore trash generated when deleting files in mounted folder (for development)
+.Trash-*
+.vscode
+# members folders
+james/
+walker/
+adam/
+james2/
+temp/
+db.php
+conn.php
+testUpload.html
+testUpload.php
