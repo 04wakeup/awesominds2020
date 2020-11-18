@@ -66,6 +66,98 @@ $ sudo systemctl daemon-reload
 $ sudo service httpd restart
 ```
 
+## MySQL Install
+
+1) Download & Install
+```sh
+sudo rpm -qplp mysql57-community-release-el7-11.noarch.rpm   ### very import -qplp
+sudo rpm -ivh mysql57-community-release-el7-11.noarch.rpm
+sudo yum install -y mysql-server
+sudo systemctl status mysqld 
+sudo systemctl start mysqld
+sudo grep 'password' /var/log/mysqld.log  # at the frist line, there is password     ### ?>TI_tR)3Zi/
+
+sudo vi /etc/my.cnf # then 
+validate_password_policy=LOW
+secure-file-priv='' at /etc/my.cnf
+sudo systemctl restart mysqld
+sudo tail -f /var/log/mysqld.log # check log
+
+sudo mysql_secure_installation
+ 6pazshIiJ#j/
+all 'Y'
+- mysql login!
+- log: check log : /var/log/mysqld.log
+-restart
+systemctl start mariadb.service (mysqld)
+OR
+service mariadb restart
+OR
+sudo systemctl restart mysqld
+```
+
+2) Account Management
+```sh 
+create user awesominds@localhost identified by 'Camosun$2020';
+create database awesominds;
+grant all on awesominds.* to awesominds@localhost;
+grant all on awesominds.* to awesominds@'%' identified by 'Camosun$2020'; 
+grant all privileges on awesominds.*   to awesominds@localhost identified by 'Camosun$2020';
+grant all privileges on awesominds.*   to awesominds@'%' identified by 'Camosun$2020';
+GRANT FILE ON *.* TO awesominds@localhost;    
+GRANT FILE ON *.* TO awesominds@'%' ;
+flush privileges;
+```sh
+
+3) Configuration for CSV Creation
+```sh
+SHOW VARIABLES LIKE "secure_file_priv";
+Disable secure-file-priv='' at /etc/my.cnf
+sudo chsh -s /bin/bash mysql # for login of mysql account
+```
+
+4) Migration
+mysqldump -uroot  -p --opt awesominds > awesominds.sql
+mysql -u root -p awesominds < ./awesominds.sql
+
+## Etc Configuration
+
+1) Azure(Network-inbound): 3306, 443(ssl), 80(http), 465(PHPMailer?)
+
+2) OS(Local) - optional 
+```sh
+firewall-cmd --add-port=3306/tcp 
+firewall-cmd --permanent --add-port=3306/tcp
+AND /etc/my.cnf file.
+[mysqld]
+skip-networking=0
+skip-bind-address
+```
+3) PHPMailer
+this is important for http
+```sh
+- getsebool httpd_can_sendmail is Off then turn On it
+   sudo setsebool -P httpd_can_sendmail 1
+- may need sudo 'setsebool -P httpd_can_network_connect 1'
+- disable_function = ...... delete exec for exec() in php.ini
+```
+4) ssh Keys
+```sh
+Copy .ssh to /home/awesominds/ 
+It should contain your local public key
+chmod 700 .ssh folder and rename it as authorized_keys as well or not stored credential .
+Edit home….ssh/config/somefile.here
+```
+
+5) Timezone
+```sh
+sudo rm -f /etc/localtime
+sudo ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
+```
+6) Git
+```sh
+sudo yum install git
+```
 
 > This is a Capstone Project at the last project teram at [Camosun College](htttp://www.camosun.ca/)
 
