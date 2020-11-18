@@ -107,7 +107,7 @@ grant all privileges on awesominds.*   to awesominds@'%' identified by 'Camosun$
 GRANT FILE ON *.* TO awesominds@localhost;    
 GRANT FILE ON *.* TO awesominds@'%' ;
 flush privileges;
-```sh
+```
 
 3) Configuration for CSV Creation
 ```sh
