@@ -6,11 +6,17 @@ The testing effect is a proven technique to improve learning; students prepare f
 
 With the completion of this prototype, the team has refactored the existing application and enhanced the features by adding new game, fixing bugs, upgrading previous funtionalities.  
 
-## Core Technology Stack
+## Technology Stack
 
-* HTML5, CSS3, JavaScript, PhaserII
-* LAMP(Linux, Apache, MySQL, PHP)
+* **Front End**: HTML5, CSS3, JavaScript, PhaserII
+* **Back End**: LAMP(Linux, Apache, MySQL, PHP)
 * Microsoft Azure
+* Workflow and Database Diagram
+  *[Workflow]*
+  ![Workflow](./resources/Workflow.png)
+  *[Database Diagram]*
+  ![Datbase Diagram](./resources/Database_Diagram.png)
+  
 
 ## Results
 More information at [Awesominds 2020 Official Site](https://04wakeup.github.io/awesominds_website/)
